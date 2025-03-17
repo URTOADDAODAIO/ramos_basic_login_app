@@ -11,8 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  /// Controller for the username text field
-  /// This allows us to access and manage the text input
   final TextEditingController _usernameController = TextEditingController();
 
   @override
@@ -22,69 +20,88 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           "Basic Login App",
           style: TextStyle(
+            fontFamily: 'Pacifico',
             fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[700],
-        elevation: 4,
-        shadowColor: Colors.blueGrey,
+        backgroundColor: Colors.amber.shade900,
+        elevation: 0,
       ),
-      backgroundColor: Colors.grey[800],
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 250,
-              child: TextField(
-                controller: _usernameController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: "Username",
-                  labelStyle: TextStyle(
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color.fromARGB(255, 17, 138, 194),
+              const Color.fromARGB(255, 7, 119, 175),
+              Colors.amber[800]!,
+            ],
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 250,
+                child: TextField(
+                  controller: _usernameController,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontFamily: 'OpenSans',
+                    fontSize: 14,
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
+                  decoration: InputDecoration(
+                    labelText: "Username",
+                    labelStyle: TextStyle(
                       color: Colors.white,
+                      fontFamily: 'OpenSans',
+                      fontSize: 14,
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: const Color.fromARGB(255, 137, 238, 5),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SecondPage(
-                      username: _usernameController.text.trim(),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SecondPage(
+                        username: _usernameController.text.trim(),
+                      ),
                     ),
+                  );
+                },
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 209, 26, 26),
+                    fontFamily: 'Montserrat',
+                    fontSize: 14,
                   ),
-                );
-              },
-              child: Text(
-                "Login",
-                style: TextStyle(
-                  color: Colors.white,
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 255, 255, 255),
+                  ),
                 ),
               ),
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(
-                  Colors.blueGrey[700],
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
